@@ -9,10 +9,10 @@ import NeaRateCalculator from "./_function/neaBillCalculator";
 export default function Home() {
   // Select Ampere
   const options = [
-    { value: "5amp", label: "5 Ampere" },
-    { value: "15amp", label: "15 Ampere" },
-    { value: "30amp", label: "30 Ampere" },
-    { value: "60amp", label: "60 Ampere" },
+    { id: 1, value: "5amp", label: "5 Ampere" },
+    { id: 2, value: "15amp", label: "15 Ampere" },
+    { id: 3, value: "30amp", label: "30 Ampere" },
+    { id: 4, value: "60amp", label: "60 Ampere" },
   ];
 
 
@@ -29,7 +29,6 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const billingAmount = NeaRateCalculator({ consumedUnit, ampere });
-    console.log(billingAmount)
     setBillCalculation(
       <>
         <div>
@@ -41,16 +40,16 @@ export default function Home() {
           <div className="bg-gray-100 p-2.5 rounded-md w-full">
             <div className="flow-root mb-2">
               <h5 className="float-left text-sm font-semibold">Energy Charge</h5>
-              <p className="float-right  text-sm font-semibold">1730</p>
+              <p className="float-right  text-sm font-semibold">{billingAmount.energyCharge}</p>
             </div>
             <div className="flow-root">
               <h5 className="float-left text-sm font-semibold">Service Charge</h5>
-              <p className="float-right  text-sm font-semibold">1730</p>
+              <p className="float-right  text-sm font-semibold">{billingAmount.serviceCharge}</p>
             </div>
             <hr className="my-3 border border-gray-400 border-dashed" />
             <div className="flow-root">
               <h5 className="float-left text-sm font-semibold text-primary-600">Total Bill Amount</h5>
-              <p className="float-right  text-sm font-semibold text-primary-600">{billingAmount.calculatedCost}</p>
+              <p className="float-right  text-sm font-semibold text-primary-600">{billingAmount.energyCharge + billingAmount.serviceCharge}</p>
             </div>
           </div>
         </div>
@@ -70,8 +69,8 @@ export default function Home() {
             src={neaLogo}
             alt="logo"
             width={400}
-            height={400}
-            className="mr-2"
+            // height={400}
+            priority
           />
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
@@ -85,6 +84,7 @@ export default function Home() {
                   Select Ampere
                 </label>
                 <ReactSelect
+                  id={options.id}
                   value={ampere}
                   onChange={setAmpere}
                   options={options}
