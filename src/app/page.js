@@ -6,6 +6,7 @@ import ReactSelect from "react-select";
 import { useState } from "react";
 import NeaRateCalculator from "./_function/neaBillCalculator";
 
+
 export default function Home() {
   // Select Ampere
   const options = [
@@ -37,14 +38,14 @@ export default function Home() {
           >
             Bill Calculation
           </p>
-          <div className="bg-gray-100 p-2.5 rounded-md w-full">
+          <div className="bg-gray-100 px-4 py-2.5 rounded-md w-full">
             <div className="flow-root mb-2">
-              <h5 className="float-left text-sm font-semibold">Energy Charge</h5>
-              <p className="float-right  text-sm font-semibold">{billingAmount.energyCharge}</p>
+              <h5 className="float-left text-sm font-medium">Energy Charge</h5>
+              <p className="float-right  text-sm font-medium">{billingAmount.energyCharge}</p>
             </div>
             <div className="flow-root">
-              <h5 className="float-left text-sm font-semibold">Service Charge</h5>
-              <p className="float-right  text-sm font-semibold">{billingAmount.serviceCharge}</p>
+              <h5 className="float-left text-sm font-medium">Service Charge</h5>
+              <p className="float-right  text-sm font-medium">{billingAmount.serviceCharge}</p>
             </div>
             <hr className="my-3 border border-gray-400 border-dashed" />
             <div className="flow-root">
@@ -59,6 +60,7 @@ export default function Home() {
 
   return (
     <section className="bg-gray-50 min-h-screen">
+
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="https://www.nea.org.np/"
@@ -69,12 +71,11 @@ export default function Home() {
             src={neaLogo}
             alt="logo"
             width={400}
-            // height={400}
             priority
           />
         </a>
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <div className="w-full bg-white rounded-md shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
+          <div className="p-4 space-y-4 md:space-y-6 sm:p-5">
             <form className="space-y-4 md:space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label
@@ -84,6 +85,7 @@ export default function Home() {
                   Select Ampere
                 </label>
                 <ReactSelect
+                  isSearchable={false}
                   id={options.id}
                   value={ampere}
                   onChange={setAmpere}
@@ -106,14 +108,15 @@ export default function Home() {
                   }}
                   id="units"
                   placeholder="356"
-                  className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-1 focus:outline-none focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-1 focus:outline-none focus:ring-primary-600 focus:border-primary-600 block w-full px-3 py-2"
+                  min={0}
                 />
               </div>
               {billCalculation}
 
               <button
                 type="submit"
-                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-400 font-semibold rounded-md text-sm px-5 py-2 text-center"
               >
                 Calculate
               </button>
