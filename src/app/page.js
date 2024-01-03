@@ -2,12 +2,19 @@
 
 import Image from "next/image";
 import neaLogo from "../../public/nea-header-logo.png";
-import ReactSelect from "react-select";
+import Select from "react-select";
 import { useState } from "react";
 import NeaRateCalculator from "./_function/neaBillCalculator";
+import { useForm } from "react-hook-form";
 
 
 export default function Home() {
+
+
+  // UseForm
+
+  // const { data, error } = useForm();
+
   // Select Ampere
   const options = [
     { id: 1, value: "5amp", label: "5 Ampere" },
@@ -15,6 +22,7 @@ export default function Home() {
     { id: 3, value: "30amp", label: "30 Ampere" },
     { id: 4, value: "60amp", label: "60 Ampere" },
   ];
+
 
 
   // selected ampere
@@ -26,9 +34,30 @@ export default function Home() {
   // Total Calculations
   const [billCalculation, setBillCalculation] = useState('');
 
+
+  // const formValidator = () => {
+  //   let errors = {};
+  //   if (ampere == []) {
+  //     return errors.ampere = "Ampere cannot be empty."
+  //   }
+  //   if (consumedUnit == null) {
+  //     return errors.units = "Units cannot be empty."
+  //   }
+  //   if (consumedUnit <= 0) {
+  //     return errors.units = "Units cannot be 0."
+  //   }
+  //   if (consumedUnit == 0) {
+  //     return errors.units = "Units cannot be 0."
+  //   }
+  //   return errors;
+  // }
+
+
   // handling submitted data
   const handleSubmit = (e) => {
     e.preventDefault();
+    // const errors = formValidator();
+
     const billingAmount = NeaRateCalculator({ consumedUnit, ampere });
     setBillCalculation(
       <>
@@ -84,7 +113,7 @@ export default function Home() {
                 >
                   Select Ampere
                 </label>
-                <ReactSelect
+                <Select
                   isSearchable={false}
                   id={options.id}
                   value={ampere}
@@ -109,8 +138,9 @@ export default function Home() {
                   id="units"
                   placeholder="356"
                   className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-1 focus:outline-none focus:ring-primary-600 focus:border-primary-600 block w-full px-3 py-2"
-                  min={0}
+                  min={1}
                 />
+                {/* <p>{errors.units}</p> */}
               </div>
               {billCalculation}
 
