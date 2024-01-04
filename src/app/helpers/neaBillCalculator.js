@@ -1,20 +1,16 @@
 import reading from "../_json/customerTariff.json";
 
-export default function NeaRateCalculator({
-    consumedUnit,
-    ampere,
+// Nea Electricity Bill Amount Calculator according to NEA Customer Tariff
+export default function NeaElectricityBillAmountCalculator({
+    data: datas,
 }) {
-    return NeaCostCalculator({ consumedUnit, reading, ampere })
-}
 
-// Nea Cost Calculation
-function NeaCostCalculator({
-    consumedUnit: meterReading,
-    reading: customerTariff,
-    ampere: amp,
-}) {
+    let meterReading = datas.consumedUnits;
+    let amp = datas.ampere;
+    let customerTariff = reading;
 
     let data = customerTariff[amp.value];
+
     if (data) {
         if (meterReading >= 0 && meterReading <= 20) {
             return {
