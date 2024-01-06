@@ -133,7 +133,7 @@ export default function Home() {
                       type="number"
                       placeholder="123"
                       className={classNames(
-                        "bg-white border border-gray-300 focus:outline-none text-gray-900 sm:text-sm rounded-md  block w-full px-3 py-2",
+                        "bg-white border border-gray-300 focus:outline-none text-gray-900 sm:text-sm rounded-md block w-full px-3 py-2",
                         errors?.consumedUnits
                           ? "border-2  border-red-600"
                           : "focus:ring-2  focus:ring-primary-600"
