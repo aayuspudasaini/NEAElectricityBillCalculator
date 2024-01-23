@@ -14,3 +14,13 @@ body,
   height: 100%;
   font-family: var(--font-poppins);
 }
+
+/* [data-theme="dark"] body {
+  background-color: #000;
+  color: #fff;
+}
+
+[data-theme="light"] body {
+  background-color: #fafafa;
+  color: #000;
+} */
